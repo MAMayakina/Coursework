@@ -19,93 +19,89 @@ class EmployeeBook {
         arrayEmployee[9] = new Employee("Алексеева Р.А.", 2, 90000);
     }
 
-    public Employee[] getArrayEmployee() {
-        return this.arrayEmployee;
-    }
-
-    public int minSalary(Employee[] array) {
+    public int minSalary() {
         int minSalary = 100000000;
         for (int i = 0; i < 10; i++) {
-            if (array[i].getSalary() < minSalary) {
-                minSalary = array[i].getSalary();
+            if (arrayEmployee[i].getSalary() < minSalary) {
+                minSalary = arrayEmployee[i].getSalary();
             }
         }
         return minSalary;
     }
 
-    public int maxSalary(Employee[] array) {
+    public int maxSalary() {
         int maxSalary = 0;
         for (int i = 0; i < 10; i++) {
-            if (array[i].getSalary() > maxSalary) {
-                maxSalary = array[i].getSalary();
+            if (arrayEmployee[i].getSalary() > maxSalary) {
+                maxSalary = arrayEmployee[i].getSalary();
             }
         }
         return maxSalary;
     }
 
-    public int sumSalary(Employee[] array) {
+    public int sumSalary() {
         int sumSalary = 0;
         for (int i = 0; i < 10; i++) {
-            sumSalary = sumSalary + array[i].getSalary();
+            sumSalary = sumSalary + arrayEmployee[i].getSalary();
         }
         return sumSalary;
     }
 
-    public void employeesName(Employee[] array) {
-        for (int i = 0; i < array.length; i++) {
-            System.out.println("id-" + array[i].getId() + ": " + array[i].getName());
+    public void employeesName() {
+        for (int i = 0; i < arrayEmployee.length; i++) {
+            System.out.println("id-" + arrayEmployee[i].getId() + ": " + arrayEmployee[i].getName());
         }
     }
 
-    public Employee[] increaseSalary(Employee[] array, int parametr) {
-        for (int i = 0; i < array.length; i++) {
-            array[i].setSalary(array[i].getSalary() + array[i].getSalary() * parametr / 100);
+    public Employee[] increaseSalary(int parametr) {
+        for (int i = 0; i < arrayEmployee.length; i++) {
+            arrayEmployee[i].setSalary(arrayEmployee[i].getSalary() + arrayEmployee[i].getSalary() * parametr / 100);
         }
-        return array;
+        return arrayEmployee;
     }
 
-    public void printEmployee(Employee[] array) {
-        for (int i = 0; i < array.length; i++) {
-            System.out.println(array[i]);
+    public void printEmployee() {
+        for (int i = 0; i < arrayEmployee.length; i++) {
+            System.out.println(arrayEmployee[i]);
         }
     }
 
-    public int minSalaryDepartment(Employee[] array, int department) {
-        int minSalaryDepartment = 100000000;
-        for (int i = 0; i < array.length; i++) {
-            if (array[i].getDepartment() == department && array[i].getSalary() < minSalaryDepartment) {
-                minSalaryDepartment = array[i].getSalary();
+    public int minSalaryDepartment(int department) {
+        int minSalaryDepartment = Integer.MAX_VALUE;
+        for (int i = 0; i < arrayEmployee.length; i++) {
+            if (arrayEmployee[i].getDepartment() == department && arrayEmployee[i].getSalary() < minSalaryDepartment) {
+                minSalaryDepartment = arrayEmployee[i].getSalary();
             }
         }
         return minSalaryDepartment;
     }
 
-    public int maxSalaryDepartment(Employee[] array, int department) {
-        int maxSalaryDepartment = 0;
-        for (int i = 0; i < array.length; i++) {
-            if (array[i].getDepartment() == department && array[i].getSalary() > maxSalaryDepartment) {
-                maxSalaryDepartment = array[i].getSalary();
+    public int maxSalaryDepartment(int department) {
+        int maxSalaryDepartment = Integer.MIN_VALUE;
+        for (int i = 0; i < arrayEmployee.length; i++) {
+            if (arrayEmployee[i].getDepartment() == department && arrayEmployee[i].getSalary() > maxSalaryDepartment) {
+                maxSalaryDepartment = arrayEmployee[i].getSalary();
             }
         }
         return maxSalaryDepartment;
     }
 
-    public int sumSalaryDepartment(Employee[] array, int department) {
+    public int sumSalaryDepartment(int department) {
         int sumSalaryDepartment = 0;
-        for (int i = 0; i < array.length; i++) {
-            if (array[i].getDepartment() == department) {
-                sumSalaryDepartment = sumSalaryDepartment + array[i].getSalary();
+        for (int i = 0; i < arrayEmployee.length; i++) {
+            if (arrayEmployee[i].getDepartment() == department) {
+                sumSalaryDepartment = sumSalaryDepartment + arrayEmployee[i].getSalary();
             }
         }
         return sumSalaryDepartment;
     }
 
-    public double averageSalaryDepartment(Employee[] array, int department) {
+    public double averageSalaryDepartment(int department) {
         int sumSalaryDepartment = 0;
         int count = 0;
-        for (int i = 0; i < array.length; i++) {
-            if (array[i].getDepartment() == department) {
-                sumSalaryDepartment = sumSalaryDepartment + array[i].getSalary();
+        for (int i = 0; i < arrayEmployee.length; i++) {
+            if (arrayEmployee[i].getDepartment() == department) {
+                sumSalaryDepartment = sumSalaryDepartment + arrayEmployee[i].getSalary();
                 count++;
             }
         }
@@ -113,73 +109,72 @@ class EmployeeBook {
         return averageSalaryDepartment;
     }
 
-    public Employee[] increaseSalaryDepartment(Employee[] array, int department, int parametr) {
-        for (int i = 0; i < array.length; i++) {
-            if (array[i].getDepartment() == department) {
-                array[i].setSalary(array[i].getSalary() + array[i].getSalary() * parametr / 100);
-            }
-
-        }
-        return array;
-    }
-
-    public void printWithoutDepartment(Employee[] array, int department) {
-        for (int i = 0; i < array.length; i++) {
-            if (array[i].getDepartment() == department) {
-                System.out.println("id-" + array[i].getId() + ": ФИО-" + array[i].getName() + "; З/п-" + array[i].getSalary());
+    public Employee[] increaseSalaryDepartment(int department, int parametr) {
+        for (int i = 0; i < arrayEmployee.length; i++) {
+            if (arrayEmployee[i].getDepartment() == department) {
+                arrayEmployee[i].setSalary(arrayEmployee[i].getSalary() + arrayEmployee[i].getSalary() * parametr / 100);
             }
         }
+        return arrayEmployee;
     }
 
-    public void salarySmallerNumber(Employee[] array, int number) {
-        for (int i = 0; i < array.length; i++) {
-            if (array[i].getSalary() < number) {
-                System.out.println("id-" + array[i].getId() + ": ФИО-" + array[i].getName() + "; З/п-" + array[i].getSalary());
+    public void printWithoutDepartment(int department) {
+        for (int i = 0; i < arrayEmployee.length; i++) {
+            if (arrayEmployee[i].getDepartment() == department) {
+                System.out.println("id-" + arrayEmployee[i].getId() + ": ФИО-" + arrayEmployee[i].getName() + "; З/п-" + arrayEmployee[i].getSalary());
             }
         }
     }
 
-    public void salaryBiggerNumber(Employee[] array, int number) {
-        for (int i = 0; i < array.length; i++) {
-            if (array[i].getSalary() >= number) {
-                System.out.println("id-" + array[i].getId() + ": ФИО-" + array[i].getName() + "; З/п-" + array[i].getSalary());
+    public void salarySmallerNumber(int number) {
+        for (int i = 0; i < arrayEmployee.length; i++) {
+            if (arrayEmployee[i].getSalary() < number) {
+                System.out.println("id-" + arrayEmployee[i].getId() + ": ФИО-" + arrayEmployee[i].getName() + "; З/п-" + arrayEmployee[i].getSalary());
             }
         }
     }
 
-    public void deleteEmployee(Employee[] array, int id) {
-        array[id-1].setName(null);
-        array[id-1].setDepartment(0);
-        array[id-1].setSalary(0);
-        array[id-1].setId(0);
-    }
-
-    public void addEmployee(Employee[] array, String name, int department, int salary) {
-        for (int i = 0; i < array.length; i++) {
-            if (array[i].getId() == 0) {
-                array[i].setName(name);
-                array[i].setDepartment(department);
-                array[i].setSalary(salary);
-                array[i].setId(i + 1);
+    public void salaryBiggerNumber(int number) {
+        for (int i = 0; i < arrayEmployee.length; i++) {
+            if (arrayEmployee[i].getSalary() >= number) {
+                System.out.println("id-" + arrayEmployee[i].getId() + ": ФИО-" + arrayEmployee[i].getName() + "; З/п-" + arrayEmployee[i].getSalary());
             }
         }
     }
 
-    public void changeEmployee(Employee[] array, String name, int newDepartment, int newSalary) {
-        for (int i = 0; i < array.length; i++) {
-            if (array[i].getName() == name) {
-                array[i].setDepartment(newDepartment);
-                array[i].setSalary(newSalary);
+    public void deleteEmployee(int id) {
+        arrayEmployee[id-1].setName(null);
+        arrayEmployee[id-1].setDepartment(0);
+        arrayEmployee[id-1].setSalary(0);
+        arrayEmployee[id-1].setId(0);
+    }
+
+    public void addEmployee(String name, int department, int salary) {
+        for (int i = 0; i < arrayEmployee.length; i++) {
+            if (arrayEmployee[i].getId() == 0) {
+                arrayEmployee[i].setName(name);
+                arrayEmployee[i].setDepartment(department);
+                arrayEmployee[i].setSalary(salary);
+                arrayEmployee[i].setId(i + 1);
             }
         }
     }
 
-    public void employeesByDepartment(Employee[] array) {
+    public void changeEmployee(String name, int newDepartment, int newSalary) {
+        for (int i = 0; i < arrayEmployee.length; i++) {
+            if (arrayEmployee[i].getName() == name) {
+                arrayEmployee[i].setDepartment(newDepartment);
+                arrayEmployee[i].setSalary(newSalary);
+            }
+        }
+    }
+
+    public void employeesByDepartment() {
         for (int i = 1; i <= 5; i++) {
             System.out.println("Сотрудники отдела " + i + ":");
-            for (int j = 0; j < array.length; j++) {
-                if (array[j].getDepartment() == i) {
-                    System.out.println("id-" + array[j].getId() + ": " + array[j].getName());
+            for (int j = 0; j < arrayEmployee.length; j++) {
+                if (arrayEmployee[j].getDepartment() == i) {
+                    System.out.println("id-" + arrayEmployee[j].getId() + ": " + arrayEmployee[j].getName());
                 }
             }
         }
